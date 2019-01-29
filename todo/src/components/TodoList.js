@@ -41,8 +41,16 @@ class TodoList extends React.Component {
                 <button onClick={this.addTodo}>Add</button>
                 <div>
                     {this.props.todos.map((todo, index) => 
-                        <h3 onClick={e => this.toggleCompleted(e, index)} key={index}>{todo.value}</h3>
-                        )}
+                        <div className='todo'>
+                            <div className={`${todo.completed}`}
+                                onClick={e => this.toggleCompleted(e, index)} 
+                                key={index}
+                            >
+                            {todo.value}
+                            </div>
+                            <div className='delete'>❌</div>
+                        </div>
+                    )}
                 </div>
 
             </>
