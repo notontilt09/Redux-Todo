@@ -5,10 +5,17 @@ import { Provider } from 'react-redux'
 
 import App from './App';
 import rootReducer from './reducers'
+import { loadState, saveState } from './localStorage'
 
 import './index.css';
 
-const store = createStore(rootReducer)
+const persistedState = loadState();
+
+const store = createStore(rootReducer, persistedState)
+
+store.subscribe(() => {
+    saveState(store.getState())
+})
 
 
 ReactDOM.render(
