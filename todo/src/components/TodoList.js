@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { addTodo } from '../actions'
+
 class TodoList extends React.Component {
     state = {
         newTodo: ''
@@ -12,13 +14,14 @@ class TodoList extends React.Component {
         })
     }
 
-    addTodo = () => {
-
+    addTodo = e => {
+        e.preventDefault();
+        this.props.addTodo(this.state.newTodo)
     }
 
     render() {
         return (
-            <form>
+            <>
                 <input 
                     type='text' 
                     placeholder='add todo...'
@@ -27,10 +30,21 @@ class TodoList extends React.Component {
                     value={this.state.newTodo}    
                 />
                 <button onClick={this.addTodo}>Add</button>
-            </form>
+                <div>
+                    {this.props.todos.map((todo, index) => 
+                        <h3 key={index}>{todo.value}</h3>
+                        )}
+                </div>
+
+            </>
         )
-    }
-   
+    } 
 }
 
-export default TodoList;
+const mapStateToProps = state => {
+    return {
+        todos: state.todos
+    }
+}
+
+export default connect(mapStateToProps, { addTodo })(TodoList);
