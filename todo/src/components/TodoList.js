@@ -16,7 +16,9 @@ class TodoList extends React.Component {
 
     addTodo = e => {
         e.preventDefault();
-        this.props.addTodo(this.state.newTodo);
+        if (this.state.newTodo) {
+            this.props.addTodo(this.state.newTodo);
+        }
         this.setState({
             newTodo: ''
         })
@@ -45,14 +47,20 @@ class TodoList extends React.Component {
                 <button onClick={this.addTodo}>Add</button>
                 <div>
                     {this.props.todos.map((todo, index) => 
-                        <div className='todo'>
+                        <div className='todo' key={index}>
                             <div className={`${todo.completed}`}
                                 onClick={e => this.toggleCompleted(e, index)} 
-                                key={index}
                             >
                             {todo.value}
                             </div>
-                            <span onClick={e => this.deleteTodo(e, index)} className='delete'>❌</span>
+                            <span 
+                                onClick={e => this.deleteTodo(e, index)} 
+                                className='delete'
+                                role='img'
+                                aria-label='delete'    
+                            >
+                            ❌
+                            </span>
                         </div>
                     )}
                 </div>
