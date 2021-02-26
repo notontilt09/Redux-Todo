@@ -12,3 +12,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+input {
+}
+
+.true {
+  text-decoration: line-through;
+  color: red;
+  cursor: pointer;
+}
+
+.false {
+  color: green;
+  cursor: pointer;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  margin: 20px auto;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+
